@@ -11,22 +11,43 @@ interface Message {
 }
 
 function extractWAMessage(text: string): string | null {
-  const match = text.match(/```whatsapp\n([\s\S]*?)```/);
+  // Match ```whatsapp (with any whitespace after) ... ``` — handles \n, \r\n, spaces
+  const match = text.match(/```whatsapp[\s\S]*?\n([\s\S]*?)```/i)
+    || text.match(/```whatsapp\s+([\s\S]*?)```/i)
+    || text.match(/```\s*whatsapp\s*\n([\s\S]*?)```/i);
   return match ? match[1].trim() : null;
 }
 
 function stripWABlock(text: string): string {
-  return text.replace(/```whatsapp\n[\s\S]*?```/, '').trim();
+  return text
+    .replace(/```whatsapp[\s\S]*?```/gi, '')
+    .replace(/```[\s\S]*?```/g, '')
+    .trim();
 }
 
 function buildWAUrl(message: string): string {
   return `https://wa.me/?text=${encodeURIComponent(message)}`;
 }
 
+// Render plain text with proper line breaks
+function TextWithBreaks({ text, className }: { text: string; className?: string }) {
+  const lines = text.split('\n');
+  return (
+    <span className={className}>
+      {lines.map((line, i) => (
+        <span key={i}>
+          {line || <>&nbsp;</>}
+          {i < lines.length - 1 && <br />}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 function MessageBubble({ msg }: { msg: Message }) {
   const isUser = msg.role === 'user';
   const waMessage = !isUser ? extractWAMessage(msg.content) : null;
-  const displayText = waMessage ? stripWABlock(msg.content) : msg.content;
+  const displayText = (waMessage ? stripWABlock(msg.content) : msg.content).trim();
 
   return (
     <div className={`flex gap-2 ${isUser ? 'flex-row-reverse' : 'flex-row'} items-end`}>
@@ -35,29 +56,35 @@ function MessageBubble({ msg }: { msg: Message }) {
           <Image src="/aryan-avatar.jpg" alt="Aryan" width={28} height={28} className="object-cover w-full h-full" />
         </div>
       )}
-      <div className={`flex flex-col gap-2 max-w-[82%] ${isUser ? 'items-end' : 'items-start'}`}>
+      <div className={`flex flex-col gap-2 max-w-[85%] ${isUser ? 'items-end' : 'items-start'}`}>
         {displayText && (
           <div className={`px-3 py-2 rounded-2xl text-sm leading-relaxed
             ${isUser
               ? 'bg-[#0B1F5C] text-white rounded-br-sm'
               : 'bg-white text-gray-800 shadow-sm border border-gray-100 rounded-bl-sm'
             }`}>
-            {displayText}
+            <TextWithBreaks text={displayText} />
           </div>
         )}
         {waMessage && (
-          <div className="bg-[#e7ffd9] border border-green-200 rounded-2xl rounded-bl-sm p-3 w-full">
-            <p className="text-[10px] font-bold text-green-700 mb-1.5 flex items-center gap-1">
-              <FaWhatsapp className="w-3 h-3" /> READY TO SEND
-            </p>
-            <p className="text-xs text-gray-700 whitespace-pre-wrap leading-relaxed font-mono">
-              {waMessage}
-            </p>
+          <div className="bg-[#e7ffd9] border border-green-200 rounded-2xl rounded-bl-sm overflow-hidden w-full">
+            {/* Header */}
+            <div className="flex items-center gap-1.5 px-3 pt-2.5 pb-1.5 border-b border-green-200">
+              <FaWhatsapp className="w-3.5 h-3.5 text-green-600 flex-shrink-0" />
+              <span className="text-[10px] font-bold text-green-700 uppercase tracking-wide">WhatsApp Message — Ready to Send</span>
+            </div>
+            {/* Message body */}
+            <div className="px-3 py-2.5">
+              <p className="text-xs text-gray-800 leading-relaxed whitespace-pre-wrap break-words">
+                {waMessage}
+              </p>
+            </div>
+            {/* Send button */}
             <a
               href={buildWAUrl(waMessage)}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2.5 flex items-center justify-center gap-2 w-full bg-[#25D366] text-white text-xs font-bold py-2 rounded-xl hover:bg-green-600 transition-colors"
+              className="flex items-center justify-center gap-2 w-full bg-[#25D366] text-white text-xs font-bold py-2.5 hover:bg-green-600 transition-colors"
             >
               <FaWhatsapp className="w-3.5 h-3.5" />
               Open in WhatsApp
