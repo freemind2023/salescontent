@@ -41,3 +41,7 @@ next-env.d.ts
 # temp/generated files
 videos_raw.json
 videos_raw.txt
+
+# source/raw assets (not needed in repo)
+pes logo .jpg
+*.xlsx
