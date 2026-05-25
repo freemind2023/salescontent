@@ -70,7 +70,7 @@ export default function ContentLibraryPage() {
             <Image src="/pes-logo.jpg" alt="PES Logo" width={40} height={40} className="object-cover w-full h-full" />
           </div>
           <div className="flex-1 min-w-0">
-            <h1 className="text-sm font-bold text-yellow-400 leading-none">Sales Content Library</h1>
+            <h1 className="text-sm font-bold text-yellow-400 leading-none">PES Admission Content Library</h1>
             <p className="text-[10px] text-white/70 mt-0.5">Select → Enter Lead Details → Send on WhatsApp</p>
           </div>
           {selectedIds.size > 0 && (
@@ -113,7 +113,7 @@ export default function ContentLibraryPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search brochures, videos, links..."
-            className="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white"
+            className="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-xl text-sm text-gray-900 bg-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400"
           />
         </div>
 

@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { Toaster } from 'react-hot-toast';
 
 export const metadata: Metadata = {
-  title: 'PES Content Library | Sales Team',
-  description: 'Internal sales content library for Practical EduSkills Pvt. Ltd.',
+  title: 'PES Admission Content Library',
+  description: 'Internal admission content library for Practical EduSkills Pvt. Ltd.',
   robots: 'noindex,nofollow',
 };
 
@@ -13,7 +13,17 @@ export default function ContentLibraryLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-gray-50">
+    // Force light mode — override dark mode CSS variables globally for this route
+    <div
+      className="min-h-screen bg-gray-50"
+      style={{
+        colorScheme: 'light',
+        ['--background' as string]: '#f9fafb',
+        ['--foreground' as string]: '#171717',
+        color: '#171717',
+        background: '#f9fafb',
+      }}
+    >
       {children}
       <Toaster
         position="top-center"

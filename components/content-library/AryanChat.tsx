@@ -117,14 +117,21 @@ export default function AryanChat() {
         }),
       });
       const data = await res.json();
+      if (data.error) {
+        setMessages(prev => [...prev, {
+          role: 'assistant',
+          content: `Error: ${data.error}`,
+        }]);
+      } else {
+        setMessages(prev => [...prev, {
+          role: 'assistant',
+          content: data.content || 'Sorry, something went wrong. Try again!',
+        }]);
+      }
+    } catch (err) {
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: data.content || 'Sorry, something went wrong. Try again!',
-      }]);
-    } catch {
-      setMessages(prev => [...prev, {
-        role: 'assistant',
-        content: '❌ Connection error. Please try again.',
+        content: `Connection error. Check your internet and try again.`,
       }]);
     } finally {
       setLoading(false);
@@ -222,7 +229,7 @@ export default function AryanChat() {
               onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && sendMessage(input)}
               placeholder="Describe your lead..."
               disabled={loading}
-              className="flex-1 px-3 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 disabled:opacity-50"
+              className="flex-1 px-3 py-2.5 border border-gray-200 rounded-xl text-sm text-gray-900 bg-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 disabled:opacity-50"
             />
             <button
               onClick={() => sendMessage(input)}

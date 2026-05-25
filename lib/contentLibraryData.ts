@@ -644,19 +644,55 @@ export const ALL_CONTENT: ContentItem[] = [
   },
 ];
 
+// Strip all emoji / pictographic characters from a string
+function stripEmojis(text: string): string {
+  // Remove surrogate-pair emojis (U+1F000–U+1FFFF encoded as surrogate pairs)
+  // and common symbol ranges without the /u flag
+  return text
+    .replace(/[\uD800-\uDFFF]/g, '')   // surrogate pairs (high/low surrogates)
+    .replace(/[☀-⟿]/g, '')    // misc symbols, dingbats
+    .replace(/[︀-﻿]/g, '')    // variation selectors, BOM
+    .replace(/‍/g, '')             // zero-width joiner
+    .replace(/ {2,}/g, ' ')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
+const MARATHI_CAT: Record<ContentCategory, string> = {
+  'youtube-course': 'व्हिडिओ (कोर्स)',
+  'youtube-generic': 'व्हिडिओ',
+  brochure: 'माहितीपत्रक (PDF)',
+  ebook: 'मोफत पुस्तक',
+  'landing-page': 'प्रवेश पृष्ठ',
+  'social-media': 'सोशल मीडिया',
+  contact: 'संपर्क',
+};
+
 export function buildWAMessage(
   items: ContentItem[],
   leadName: string,
-  _leadPhone: string
+  _leadPhone: string,
+  language: 'en' | 'mr' = 'en'
 ): string {
-  const name = leadName.trim() || 'there';
+  const name = leadName.trim() || (language === 'mr' ? 'विद्यार्थी' : 'there');
+
+  if (language === 'mr') {
+    const lines = items
+      .map((item) => `${MARATHI_CAT[item.category]}: ${item.label}\n${item.url}`)
+      .join('\n\n');
+    return stripEmojis(
+      `नमस्कार ${name},\n\nPractical EduSkills (PES) कडून काही महत्वाची माहिती शेअर करत आहे:\n\n${lines}\n\nकोणताही प्रश्न असल्यास संपर्क करा:\nफोन/WhatsApp: +91-98909-59990\nवेबसाइट: www.practicaleduskills.com`
+    );
+  }
+
   const messages = items
     .map((item) => item.waMessageTemplate.replace(/\{\{name\}\}/g, name))
     .join('\n\n---\n\n');
-  return (
-    `Hi ${name}! 👋 Here's some information I wanted to share with you from Practical EduSkills:\n\n` +
+
+  return stripEmojis(
+    `Hi ${name}! Here is some information I wanted to share with you from Practical EduSkills:\n\n` +
     messages +
-    '\n\n📞 Any questions? Call/WhatsApp: +91-98909-59990\n🌐 www.practicaleduskills.com'
+    '\n\nAny questions? Call/WhatsApp: +91-98909-59990\nWebsite: www.practicaleduskills.com'
   );
 }
 
