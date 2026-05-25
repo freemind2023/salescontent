@@ -8,6 +8,7 @@ import { ALL_CONTENT, FILTER_TABS, type ContentItem, type ContentCategory } from
 import ContentCard from '@/components/content-library/ContentCard';
 import CartBar from '@/components/content-library/CartBar';
 import LeadModal from '@/components/content-library/LeadModal';
+import AryanChat from '@/components/content-library/AryanChat';
 
 const COURSES = [
   { name: 'Practical B.Com', duration: '3 Years', eligibility: '12th Pass', highlight: 'OJT ₹8k–₹15k/mo · Dubai Placement', waMsg: 'Hi! 👋 Sharing info about Practical B.Com at PES — 3-year program with OJT stipend ₹8k–15k/mo and Dubai placement! 🌍\n👉 https://www.practicaleduskills.com\n📞 +91-98909-59990' },
@@ -246,6 +247,9 @@ export default function ContentLibraryPage() {
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
       />
+
+      {/* Aryan — AI Sales Assistant */}
+      <AryanChat />
     </div>
   );
 }
