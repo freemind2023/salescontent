@@ -35,7 +35,7 @@ export const FILTER_TABS = [
   { key: 'landing-page', label: 'Landing Pages' },
   { key: 'brochure', label: 'Brochures' },
   { key: 'ebook', label: 'eBooks' },
-  { key: 'youtube-reels', label: '🎬 Sanmit Sir Reels' },
+  { key: 'youtube-reels', label: '🎬 Sanmit Sir Concept Reels' },
   { key: 'youtube-course', label: 'YouTube — Courses' },
   { key: 'youtube-generic', label: 'YouTube — General' },
   { key: 'social-media', label: 'Social & Links' },
