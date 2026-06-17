@@ -1,6 +1,7 @@
 export type ContentCategory =
   | 'youtube-course'
   | 'youtube-generic'
+  | 'youtube-reels'
   | 'brochure'
   | 'ebook'
   | 'landing-page'
@@ -21,6 +22,7 @@ export interface ContentItem {
 export const CATEGORY_LABELS: Record<ContentCategory, string> = {
   'youtube-course': 'YouTube — Courses',
   'youtube-generic': 'YouTube — General',
+  'youtube-reels': 'Sanmit Sir Reels',
   brochure: 'Brochures',
   ebook: 'eBooks',
   'landing-page': 'Landing Pages',
@@ -33,6 +35,7 @@ export const FILTER_TABS = [
   { key: 'landing-page', label: 'Landing Pages' },
   { key: 'brochure', label: 'Brochures' },
   { key: 'ebook', label: 'eBooks' },
+  { key: 'youtube-reels', label: '🎬 Sanmit Sir Reels' },
   { key: 'youtube-course', label: 'YouTube — Courses' },
   { key: 'youtube-generic', label: 'YouTube — General' },
   { key: 'social-media', label: 'Social & Links' },
@@ -577,6 +580,58 @@ export const ALL_CONTENT: ContentItem[] = [
       'Hi {{name}} 👋, watch how Practical EduSkills has established itself as a leading institution in practical education! 🏆\n👉 https://www.youtube.com/watch?v=N0_JCKbUEUc',
   },
 
+  // ── SANMIT SIR CONCEPT REELS ───────────────────────────────────
+  {
+    id: 'reel-sanmit-1',
+    category: 'youtube-reels',
+    label: 'Sanmit Sir — Concept Reel 1',
+    sublabel: 'Career Concept · YouTube Short',
+    url: 'https://youtube.com/shorts/O3xtSglQiTs',
+    tag: 'Reel',
+    waMessageTemplate:
+      'Hi {{name}} 👋, watch this quick concept reel by PES CEO Sanmit Shah — a must-watch for every student! 🎬\n👉 https://youtube.com/shorts/O3xtSglQiTs',
+  },
+  {
+    id: 'reel-sanmit-2',
+    category: 'youtube-reels',
+    label: 'Sanmit Sir — Concept Reel 2',
+    sublabel: 'Career Concept · YouTube Short',
+    url: 'https://youtube.com/shorts/AiMn2MXNfO8',
+    tag: 'Reel',
+    waMessageTemplate:
+      'Hi {{name}} 👋, here\'s another powerful concept reel by Sanmit Shah Sir — short and impactful! 🎬\n👉 https://youtube.com/shorts/AiMn2MXNfO8',
+  },
+  {
+    id: 'reel-sanmit-3',
+    category: 'youtube-reels',
+    label: 'Sanmit Sir — Concept Reel 3',
+    sublabel: 'Career Concept · YouTube Short',
+    url: 'https://youtube.com/shorts/vLcjgrVaQ-Y',
+    tag: 'Reel',
+    waMessageTemplate:
+      'Hi {{name}} 👋, watch this concept reel by Sanmit Shah Sir — great perspective on career choices! 💡\n👉 https://youtube.com/shorts/vLcjgrVaQ-Y',
+  },
+  {
+    id: 'reel-sanmit-4',
+    category: 'youtube-reels',
+    label: 'Sanmit Sir — Concept Reel 4',
+    sublabel: 'Career Concept · YouTube Short',
+    url: 'https://youtube.com/shorts/HTcxDFzwk6g',
+    tag: 'Reel',
+    waMessageTemplate:
+      'Hi {{name}} 👋, this reel by Sanmit Shah Sir explains the PES philosophy in under a minute! 🎯\n👉 https://youtube.com/shorts/HTcxDFzwk6g',
+  },
+  {
+    id: 'reel-sanmit-5',
+    category: 'youtube-reels',
+    label: 'Sanmit Sir — Concept Reel 5',
+    sublabel: 'Career Concept · YouTube Short',
+    url: 'https://youtube.com/shorts/ZZaa09JzFPQ',
+    tag: 'Reel',
+    waMessageTemplate:
+      'Hi {{name}} 👋, watch this reel by Sanmit Shah Sir — practical insights on education & careers! 🚀\n👉 https://youtube.com/shorts/ZZaa09JzFPQ',
+  },
+
   // ── SOCIAL MEDIA & WEBSITE ─────────────────────────────────────
   {
     id: 'social-instagram',
@@ -661,6 +716,7 @@ function stripEmojis(text: string): string {
 const MARATHI_CAT: Record<ContentCategory, string> = {
   'youtube-course': 'व्हिडिओ (कोर्स)',
   'youtube-generic': 'व्हिडिओ',
+  'youtube-reels': 'संकल्पना रील',
   brochure: 'माहितीपत्रक (PDF)',
   ebook: 'मोफत पुस्तक',
   'landing-page': 'प्रवेश पृष्ठ',
