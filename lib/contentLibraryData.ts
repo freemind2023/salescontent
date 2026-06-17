@@ -632,6 +632,37 @@ export const ALL_CONTENT: ContentItem[] = [
       'Hi {{name}} 👋, watch this reel by Sanmit Shah Sir — practical insights on education & careers! 🚀\n👉 https://youtube.com/shorts/ZZaa09JzFPQ',
   },
 
+  {
+    id: 'reel-sanmit-6',
+    category: 'youtube-reels',
+    label: 'Sanmit Sir — Concept Reel 6',
+    sublabel: 'Career Concept · YouTube Short',
+    url: 'https://youtube.com/shorts/sCgyGuuQacc',
+    tag: 'Reel',
+    waMessageTemplate:
+      'Hi {{name}} 👋, watch this concept reel by Sanmit Shah Sir — short, sharp and insightful! 🎬\n👉 https://youtube.com/shorts/sCgyGuuQacc',
+  },
+  {
+    id: 'reel-sanmit-7',
+    category: 'youtube-reels',
+    label: 'Sanmit Sir — Concept Reel 7',
+    sublabel: 'Career Concept · YouTube Short',
+    url: 'https://youtube.com/shorts/S1O4HOU-jr4',
+    tag: 'Reel',
+    waMessageTemplate:
+      'Hi {{name}} 👋, here\'s a great concept reel by Sanmit Shah Sir — worth a watch! 💡\n👉 https://youtube.com/shorts/S1O4HOU-jr4',
+  },
+  {
+    id: 'reel-sanmit-8',
+    category: 'youtube-reels',
+    label: 'Sanmit Sir — Concept Reel 8',
+    sublabel: 'Career Concept · YouTube Short',
+    url: 'https://youtube.com/shorts/WkLGdS9ij50',
+    tag: 'Reel',
+    waMessageTemplate:
+      'Hi {{name}} 👋, watch this powerful concept reel by Sanmit Shah Sir! 🚀\n👉 https://youtube.com/shorts/WkLGdS9ij50',
+  },
+
   // ── SOCIAL MEDIA & WEBSITE ─────────────────────────────────────
   {
     id: 'social-instagram',
