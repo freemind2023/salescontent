@@ -3,6 +3,7 @@ export type ContentCategory =
   | 'youtube-generic'
   | 'youtube-reels'
   | 'youtube-parents'
+  | 'youtube-students'
   | 'brochure'
   | 'ebook'
   | 'landing-page'
@@ -25,6 +26,7 @@ export const CATEGORY_LABELS: Record<ContentCategory, string> = {
   'youtube-generic': 'YouTube — General',
   'youtube-reels': 'Sanmit Sir Concept Reels',
   'youtube-parents': 'Parents Testimonials',
+  'youtube-students': 'Students Testimonials',
   brochure: 'Brochures',
   ebook: 'eBooks',
   'landing-page': 'Landing Pages',
@@ -39,6 +41,7 @@ export const FILTER_TABS = [
   { key: 'ebook', label: 'eBooks' },
   { key: 'youtube-reels', label: '🎬 Sanmit Sir Concept Reels' },
   { key: 'youtube-parents', label: '👨‍👩‍👧 Parents Testimonials' },
+  { key: 'youtube-students', label: '🎓 Students Testimonials' },
   { key: 'youtube-course', label: 'YouTube — Courses' },
   { key: 'youtube-generic', label: 'YouTube — General' },
   { key: 'social-media', label: 'Social & Links' },
@@ -583,6 +586,49 @@ export const ALL_CONTENT: ContentItem[] = [
       'Hi {{name}} 👋, watch how Practical EduSkills has established itself as a leading institution in practical education! 🏆\n👉 https://www.youtube.com/watch?v=N0_JCKbUEUc',
   },
 
+  // ── STUDENTS TESTIMONIALS ──────────────────────────────────────
+  { id: 'st-01', category: 'youtube-students', label: 'Student Testimonial 1', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/Ect974gR51c', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch what our student has to say about PES! 🎓\n👉 https://youtube.com/shorts/Ect974gR51c' },
+  { id: 'st-02', category: 'youtube-students', label: 'Student Testimonial 2', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/ghGJUeGBDG4', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, hear directly from a PES student about their experience! 🎓\n👉 https://youtube.com/shorts/ghGJUeGBDG4' },
+  { id: 'st-03', category: 'youtube-students', label: 'Student Testimonial 3', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/R7_6O9js1Sg', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch this student share their PES journey! 🎓\n👉 https://youtube.com/shorts/R7_6O9js1Sg' },
+  { id: 'st-04', category: 'youtube-students', label: 'Student Testimonial 4', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/wMv2iynKsyw', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, hear what this PES student says about the program! 🎓\n👉 https://youtube.com/shorts/wMv2iynKsyw' },
+  { id: 'st-05', category: 'youtube-students', label: 'Student Testimonial 5', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/WqQtbuulBgo', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch a real student testimonial from PES! 🎓\n👉 https://youtube.com/shorts/WqQtbuulBgo' },
+  { id: 'st-06', category: 'youtube-students', label: 'Student Testimonial 6', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/zjhd-p665P0', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, see what students experience at PES! 🎓\n👉 https://youtube.com/shorts/zjhd-p665P0' },
+  { id: 'st-07', category: 'youtube-students', label: 'Student Testimonial 7', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/havkuw5sMtw', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch this PES student share their success story! 🌟\n👉 https://youtube.com/shorts/havkuw5sMtw' },
+  { id: 'st-08', category: 'youtube-students', label: 'Student Testimonial 8', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/k3RomzeNq7E', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, hear from a PES student about how it changed their career! 🎓\n👉 https://youtube.com/shorts/k3RomzeNq7E' },
+  { id: 'st-09', category: 'youtube-students', label: 'Student Testimonial 9', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/CkKkPnNAMPc', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch what this student says about PES! 🎓\n👉 https://youtube.com/shorts/CkKkPnNAMPc' },
+  { id: 'st-10', category: 'youtube-students', label: 'Student Testimonial 10', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/XgvO2gGMtSY', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, a PES student shares their real experience — must watch! 🎓\n👉 https://youtube.com/shorts/XgvO2gGMtSY' },
+  { id: 'st-11', category: 'youtube-students', label: 'Student Testimonial 11', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/OpZSOjvtwvU', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, hear this PES student\'s journey in their own words! 🎓\n👉 https://youtube.com/shorts/OpZSOjvtwvU' },
+  { id: 'st-12', category: 'youtube-students', label: 'Student Testimonial 12', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/0G8GYCXjUCQ', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch this student testimonial from PES! 🎓\n👉 https://youtube.com/shorts/0G8GYCXjUCQ' },
+  { id: 'st-13', category: 'youtube-students', label: 'Student Testimonial 13', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/YZRYTwk9DxI', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, see how PES is transforming student careers! 🌟\n👉 https://youtube.com/shorts/YZRYTwk9DxI' },
+  { id: 'st-14', category: 'youtube-students', label: 'Student Testimonial 14', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/faq8GXg1Odw', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch this honest student review of PES! 🎓\n👉 https://youtube.com/shorts/faq8GXg1Odw' },
+  { id: 'st-15', category: 'youtube-students', label: 'Student Testimonial 15', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/roAWADjkH10', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, hear from a PES student about their career growth! 🎓\n👉 https://youtube.com/shorts/roAWADjkH10' },
+  { id: 'st-16', category: 'youtube-students', label: 'Student Testimonial 16', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/H0yxCu0MUhU', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch this PES student talk about their experience! 🎓\n👉 https://youtube.com/shorts/H0yxCu0MUhU' },
+  { id: 'st-17', category: 'youtube-students', label: 'Student Testimonial 17', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/Fha0K2_M05c', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, a PES student shares how the program shaped their future! 🌟\n👉 https://youtube.com/shorts/Fha0K2_M05c' },
+  { id: 'st-18', category: 'youtube-students', label: 'Student Testimonial 18', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/Sb5XYCcNe1g', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch this PES student\'s success story! 🎓\n👉 https://youtube.com/shorts/Sb5XYCcNe1g' },
+  { id: 'st-19', category: 'youtube-students', label: 'Student Testimonial 19', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/OgnzAIxGUbw', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, hear what students are saying about PES! 🎓\n👉 https://youtube.com/shorts/OgnzAIxGUbw' },
+  { id: 'st-20', category: 'youtube-students', label: 'Student Testimonial 20', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/FWK8iasvPng', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch this real student testimonial from PES! 🎓\n👉 https://youtube.com/shorts/FWK8iasvPng' },
+  { id: 'st-21', category: 'youtube-students', label: 'Student Testimonial 21', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/CNrvmH6_M4w', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, see what life at PES looks like from a student\'s perspective! 🎓\n👉 https://youtube.com/shorts/CNrvmH6_M4w' },
+  { id: 'st-22', category: 'youtube-students', label: 'Student Testimonial 22', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/1cGLxiaFz-o', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch this PES student talk about their journey! 🌟\n👉 https://youtube.com/shorts/1cGLxiaFz-o' },
+  { id: 'st-23', category: 'youtube-students', label: 'Student Testimonial 23', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/Zis5qDcMQPg', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, hear a PES student share their experience! 🎓\n👉 https://youtube.com/shorts/Zis5qDcMQPg' },
+  { id: 'st-24', category: 'youtube-students', label: 'Student Testimonial 24', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/TaOnXYnR-60', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch this honest review from a PES student! 🎓\n👉 https://youtube.com/shorts/TaOnXYnR-60' },
+  { id: 'st-25', category: 'youtube-students', label: 'Student Testimonial 25', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/DO66yW1ISPU', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, a PES student shares their career story — inspiring! 🌟\n👉 https://youtube.com/shorts/DO66yW1ISPU' },
+  { id: 'st-26', category: 'youtube-students', label: 'Student Testimonial 26', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/mYX0a9A0NEE', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch what this PES student says about their growth! 🎓\n👉 https://youtube.com/shorts/mYX0a9A0NEE' },
+  { id: 'st-27', category: 'youtube-students', label: 'Student Testimonial 27', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/MKkfX7BJ3a4', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, hear from a PES student about life at PES! 🎓\n👉 https://youtube.com/shorts/MKkfX7BJ3a4' },
+  { id: 'st-28', category: 'youtube-students', label: 'Student Testimonial 28', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/4a9_X2dDEFc', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch this PES student testimonial! 🎓\n👉 https://youtube.com/shorts/4a9_X2dDEFc' },
+  { id: 'st-29', category: 'youtube-students', label: 'Student Testimonial 29', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/ySRDACi5Dt0', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, see how PES helped this student build their career! 🌟\n👉 https://youtube.com/shorts/ySRDACi5Dt0' },
+  { id: 'st-30', category: 'youtube-students', label: 'Student Testimonial 30', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/QDTOEHLPsKM', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch this student share their PES success story! 🎓\n👉 https://youtube.com/shorts/QDTOEHLPsKM' },
+  { id: 'st-31', category: 'youtube-students', label: 'Student Testimonial 31', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/YrioqpQW5iU', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, hear from a PES student about their journey! 🎓\n👉 https://youtube.com/shorts/YrioqpQW5iU' },
+  { id: 'st-32', category: 'youtube-students', label: 'Student Testimonial 32', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/7r-4xNlUR4w', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch this real PES student experience! 🎓\n👉 https://youtube.com/shorts/7r-4xNlUR4w' },
+  { id: 'st-33', category: 'youtube-students', label: 'Student Testimonial 33', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/WGgdI7T9gDU', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, see what PES students say about their education! 🌟\n👉 https://youtube.com/shorts/WGgdI7T9gDU' },
+  { id: 'st-34', category: 'youtube-students', label: 'Student Testimonial 34', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/VUd-_REP7S4', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch this PES student testimonial! 🎓\n👉 https://youtube.com/shorts/VUd-_REP7S4' },
+  { id: 'st-35', category: 'youtube-students', label: 'Student Testimonial 35', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/O1MtqlPcQWM', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, a PES student shares their real career journey! 🎓\n👉 https://youtube.com/shorts/O1MtqlPcQWM' },
+  { id: 'st-36', category: 'youtube-students', label: 'Student Testimonial 36', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/PM7EAxuL3zg', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch this student talk about PES and their future! 🌟\n👉 https://youtube.com/shorts/PM7EAxuL3zg' },
+  { id: 'st-37', category: 'youtube-students', label: 'Student Testimonial 37', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/giDWF5EICY8', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, hear this PES student\'s inspiring story! 🎓\n👉 https://youtube.com/shorts/giDWF5EICY8' },
+  { id: 'st-38', category: 'youtube-students', label: 'Student Testimonial 38', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/bAMD0J5_CHg', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch this PES student testimonial — straight from the heart! 🎓\n👉 https://youtube.com/shorts/bAMD0J5_CHg' },
+  { id: 'st-39', category: 'youtube-students', label: 'Student Testimonial 39', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/0WGIYakhlCc', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, see how PES shaped this student\'s career! 🌟\n👉 https://youtube.com/shorts/0WGIYakhlCc' },
+  { id: 'st-40', category: 'youtube-students', label: 'Student Testimonial 40', sublabel: 'Student Experience · YouTube Short', url: 'https://youtube.com/shorts/zGLbEXnG9xw', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch this PES student share their success! 🎓\n👉 https://youtube.com/shorts/zGLbEXnG9xw' },
+  { id: 'st-41', category: 'youtube-students', label: 'Student Testimonial — BBA Admission Change', sublabel: 'Student Testimonial · Full Video · BBA to B.Com', url: 'https://youtu.be/vY63DeLeiNw', tag: 'Student', waMessageTemplate: 'Hi {{name}} 👋, watch this student who switched from BBA to Practical B.Com — and never looked back! 🎓\n👉 https://youtu.be/vY63DeLeiNw' },
+
   // ── PARENTS TESTIMONIALS ───────────────────────────────────────
   {
     id: 'yt-parent-12vi-bcom',
@@ -774,6 +820,7 @@ const MARATHI_CAT: Record<ContentCategory, string> = {
   'youtube-generic': 'व्हिडिओ',
   'youtube-reels': 'संकल्पना रील',
   'youtube-parents': 'पालक प्रतिक्रिया',
+  'youtube-students': 'विद्यार्थी प्रतिक्रिया',
   brochure: 'माहितीपत्रक (PDF)',
   ebook: 'मोफत पुस्तक',
   'landing-page': 'प्रवेश पृष्ठ',

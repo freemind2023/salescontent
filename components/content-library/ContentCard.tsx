@@ -11,6 +11,7 @@ const CATEGORY_COLORS: Record<ContentCategory, string> = {
   'youtube-generic': 'bg-red-500',
   'youtube-reels': 'bg-pink-600',
   'youtube-parents': 'bg-amber-500',
+  'youtube-students': 'bg-green-600',
   brochure: 'bg-orange-500',
   ebook: 'bg-teal-600',
   'landing-page': 'bg-blue-600',
@@ -23,6 +24,7 @@ const CATEGORY_BG: Record<ContentCategory, string> = {
   'youtube-generic': 'bg-red-50 border-red-200',
   'youtube-reels': 'bg-pink-50 border-pink-200',
   'youtube-parents': 'bg-amber-50 border-amber-200',
+  'youtube-students': 'bg-green-50 border-green-200',
   brochure: 'bg-orange-50 border-orange-200',
   ebook: 'bg-teal-50 border-teal-200',
   'landing-page': 'bg-blue-50 border-blue-200',
@@ -39,6 +41,8 @@ function CategoryIcon({ category }: { category: ContentCategory }) {
       return <FaYoutube className={`${cls} text-pink-600`} />;
     case 'youtube-parents':
       return <FaYoutube className={`${cls} text-amber-500`} />;
+    case 'youtube-students':
+      return <FaYoutube className={`${cls} text-green-600`} />;
     case 'brochure':
       return <FaFilePdf className={`${cls} text-orange-500`} />;
     case 'ebook':
@@ -61,6 +65,7 @@ function TagBadge({ tag, category }: { tag?: string; category: ContentCategory }
     'youtube-generic': 'bg-red-100 text-red-700',
     'youtube-reels': 'bg-pink-100 text-pink-700',
     'youtube-parents': 'bg-amber-100 text-amber-700',
+    'youtube-students': 'bg-green-100 text-green-700',
     brochure: 'bg-orange-100 text-orange-700',
     ebook: 'bg-teal-100 text-teal-700',
     'landing-page': 'bg-blue-100 text-blue-700',
