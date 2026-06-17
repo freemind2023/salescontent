@@ -2,6 +2,7 @@ export type ContentCategory =
   | 'youtube-course'
   | 'youtube-generic'
   | 'youtube-reels'
+  | 'youtube-parents'
   | 'brochure'
   | 'ebook'
   | 'landing-page'
@@ -22,7 +23,8 @@ export interface ContentItem {
 export const CATEGORY_LABELS: Record<ContentCategory, string> = {
   'youtube-course': 'YouTube — Courses',
   'youtube-generic': 'YouTube — General',
-  'youtube-reels': 'Sanmit Sir Reels',
+  'youtube-reels': 'Sanmit Sir Concept Reels',
+  'youtube-parents': 'Parents Testimonials',
   brochure: 'Brochures',
   ebook: 'eBooks',
   'landing-page': 'Landing Pages',
@@ -36,6 +38,7 @@ export const FILTER_TABS = [
   { key: 'brochure', label: 'Brochures' },
   { key: 'ebook', label: 'eBooks' },
   { key: 'youtube-reels', label: '🎬 Sanmit Sir Concept Reels' },
+  { key: 'youtube-parents', label: '👨‍👩‍👧 Parents Testimonials' },
   { key: 'youtube-course', label: 'YouTube — Courses' },
   { key: 'youtube-generic', label: 'YouTube — General' },
   { key: 'social-media', label: 'Social & Links' },
@@ -580,6 +583,28 @@ export const ALL_CONTENT: ContentItem[] = [
       'Hi {{name}} 👋, watch how Practical EduSkills has established itself as a leading institution in practical education! 🏆\n👉 https://www.youtube.com/watch?v=N0_JCKbUEUc',
   },
 
+  // ── PARENTS TESTIMONIALS ───────────────────────────────────────
+  {
+    id: 'yt-parent-12vi-bcom',
+    category: 'youtube-parents',
+    label: '१२वी नंतर विद्यार्थ्यांना घडवायचं असेल तर Practical B.Com',
+    sublabel: 'Parent Testimonial · Marathi · B.Com',
+    url: 'https://www.youtube.com/watch?v=Ub21cAoOr_Q',
+    tag: 'Parent Testimonial',
+    waMessageTemplate:
+      'नमस्कार {{name}} 👋, हे व्हिडिओ एका पालकाने Practical B.Com बद्दल सांगितलेले आहे — नक्की पाहा! 👨‍👩‍👧\n👉 https://www.youtube.com/watch?v=Ub21cAoOr_Q',
+  },
+  {
+    id: 'yt-parent-short-1',
+    category: 'youtube-parents',
+    label: 'Parent Testimonial — Short',
+    sublabel: 'Parent Testimonial · YouTube Short',
+    url: 'https://youtube.com/shorts/H7v4yXeqVVo',
+    tag: 'Parent Testimonial',
+    waMessageTemplate:
+      'Hi {{name}} 👋, watch what this parent says about PES — a quick and honest testimonial! 👨‍👩‍👧\n👉 https://youtube.com/shorts/H7v4yXeqVVo',
+  },
+
   // ── SANMIT SIR CONCEPT REELS ───────────────────────────────────
   {
     id: 'reel-sanmit-1',
@@ -748,6 +773,7 @@ const MARATHI_CAT: Record<ContentCategory, string> = {
   'youtube-course': 'व्हिडिओ (कोर्स)',
   'youtube-generic': 'व्हिडिओ',
   'youtube-reels': 'संकल्पना रील',
+  'youtube-parents': 'पालक प्रतिक्रिया',
   brochure: 'माहितीपत्रक (PDF)',
   ebook: 'मोफत पुस्तक',
   'landing-page': 'प्रवेश पृष्ठ',
