@@ -89,6 +89,16 @@ export const ALL_CONTENT: ContentItem[] = [
     waMessageTemplate:
       'Hi {{name}} 👋, here\'s the Practical B.COM admission page for PES Baramati. It\'s our flagship center with hands-on Fintech training and paid OJT! 💼\n👉 https://www.practicaleduskills.com/baramati\nCall/WhatsApp: +91 96893 48709',
   },
+  {
+    id: 'landing-bba',
+    category: 'landing-page',
+    label: 'Practical BBA — Admission Page',
+    sublabel: 'Business Management · Dubai Placement · OJT · 3 Years',
+    url: 'https://www.practicaleduskills.com/bba',
+    tag: 'BBA',
+    waMessageTemplate:
+      'Hi {{name}} 👋, here\'s the Practical BBA admission page at PES — industry-focused management degree with Dubai placement & OJT! 💼\n👉 https://www.practicaleduskills.com/bba\nCall/WhatsApp: +91-98909-59990',
+  },
 
   // ── BROCHURES ──────────────────────────────────────────────────
   {
@@ -130,6 +140,16 @@ export const ALL_CONTENT: ContentItem[] = [
     tag: 'PDF',
     waMessageTemplate:
       'Hi {{name}} 👋, here\'s the Practical B.COM brochure from PES. 3-year program with OJT stipend and Dubai placement opportunity! 🌍\n📄 https://drive.google.com/file/d/1qJXQ49PqfaXpl-IJDiTFT5OD5gW7npFs/view?usp=sharing',
+  },
+  {
+    id: 'brochure-bba',
+    category: 'brochure',
+    label: 'Practical BBA — Brochure',
+    sublabel: 'Business Management · Dubai Placement · OJT · 3 Years',
+    url: 'https://drive.google.com/file/d/10m5v7zrBUAKWY6M2YdDX6nGjRY21_rsj/view?usp=sharing',
+    tag: 'PDF',
+    waMessageTemplate:
+      'Hi {{name}} 👋, here\'s the Practical BBA brochure from PES — management degree with real-world OJT and Dubai placement! 💼\n📄 https://drive.google.com/file/d/10m5v7zrBUAKWY6M2YdDX6nGjRY21_rsj/view?usp=sharing',
   },
 
   // ── eBOOKS ─────────────────────────────────────────────────────
