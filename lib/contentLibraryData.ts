@@ -151,6 +151,16 @@ export const ALL_CONTENT: ContentItem[] = [
     waMessageTemplate:
       'Hi {{name}} 👋, here\'s the Practical BBA brochure from PES — management degree with real-world OJT and Dubai placement! 💼\n📄 https://drive.google.com/file/d/10m5v7zrBUAKWY6M2YdDX6nGjRY21_rsj/view?usp=sharing',
   },
+  {
+    id: 'brochure-digital-marketing',
+    category: 'brochure',
+    label: 'Digital Marketing Career Program — Brochure',
+    sublabel: 'Marketing First, AI Second · Career Program',
+    url: 'https://drive.google.com/file/d/1cay9eRrK55dbW5mOFTpxPKqb8EiBXDST/view?usp=sharing',
+    tag: 'PDF',
+    waMessageTemplate:
+      'Hi {{name}} 👋, here\'s the Digital Marketing Career Program brochure from PES — master digital marketing the way India\'s top brands do, with AI skills built in! 📈\n📄 https://drive.google.com/file/d/1cay9eRrK55dbW5mOFTpxPKqb8EiBXDST/view?usp=sharing',
+  },
 
   // ── eBOOKS ─────────────────────────────────────────────────────
   {
