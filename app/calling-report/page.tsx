@@ -165,16 +165,45 @@ export default function CallingReportPage() {
 
   const byDate = useMemo(() => {
     const map = new Map<string, number>();
+    let maxTime = 0;
     filtered.forEach((r) => {
       if (!r.dateL1) return;
       map.set(r.dateL1, (map.get(r.dateL1) || 0) + 1);
+      maxTime = Math.max(maxTime, parseDMY(r.dateL1));
     });
-    return Array.from(map.entries())
-      .sort((a, b) => parseDMY(a[0]) - parseDMY(b[0]))
-      .slice(-14);
+    if (!maxTime) return [];
+    const days: [string, number][] = [];
+    for (let i = 13; i >= 0; i--) {
+      const d = new Date(maxTime - i * 86400000);
+      const key = `${String(d.getDate()).padStart(2, "0")}/${String(d.getMonth() + 1).padStart(2, "0")}/${d.getFullYear()}`;
+      days.push([key, map.get(key) || 0]);
+    }
+    return days;
   }, [filtered]);
 
   const maxByDate = Math.max(1, ...byDate.map(([, c]) => c));
+
+  const outcomeData = useMemo(() => {
+    const defs = [
+      { key: "connected", label: "Connected", color: "#1baf7a" },
+      { key: "not_connected", label: "Not Connected", color: "#eb6834" },
+      { key: "invalid", label: "Invalid", color: "#898781" },
+      { key: "pending", label: "Pending", color: "#eda100" },
+    ] as const;
+    const counts: Record<string, number> = { connected: 0, not_connected: 0, invalid: 0, pending: 0 };
+    filtered.forEach((r) => counts[statusOf(r.remarkL1)]++);
+    return defs.filter((d) => counts[d.key] > 0).map((d) => ({ label: d.label, value: counts[d.key], color: d.color }));
+  }, [filtered]);
+
+  const sourceData = useMemo(() => {
+    const palette = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#6250d6"];
+    const counts = new Map<string, number>();
+    filtered.forEach((r) => {
+      const key = r.leadSource || "Unknown";
+      counts.set(key, (counts.get(key) || 0) + 1);
+    });
+    return Array.from(counts.entries()).map(([label, value], i) => ({ label, value, color: palette[i % palette.length] }));
+  }, [filtered]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
   const pageRows = filtered.slice((page - 1) * pageSize, page * pageSize);
@@ -275,20 +304,33 @@ export default function CallingReportPage() {
         </div>
 
         {/* Calls over time */}
-        <section className="bg-white rounded-2xl shadow p-4">
-          <h2 className="text-sm font-bold text-[#0B1F5C] mb-3">Calls Made — Last 14 Active Days (Time Window)</h2>
-          <div className="flex items-end gap-2 h-32">
+        <section className="bg-white rounded-2xl shadow p-6">
+          <h2 className="text-sm font-bold text-[#0B1F5C] mb-1">Calls Made — Last 14 Days (Time Window)</h2>
+          <p className="text-[11px] text-gray-400 mb-5">Daily call volume for the selected filters, including days with zero calls</p>
+          <div className="flex items-end gap-3 h-64">
             {byDate.map(([date, count]) => (
-              <div key={date} className="flex-1 flex flex-col items-center gap-1">
-                <span className="text-[10px] text-gray-500">{count}</span>
+              <div key={date} className="flex-1 h-full flex flex-col items-center justify-end gap-2" title={`${date}: ${count} calls`}>
+                <span className="text-xs font-semibold text-[#0B1F5C]">{count || ""}</span>
                 <div
-                  className="w-full bg-[#0B1F5C] rounded-t"
-                  style={{ height: `${Math.max(4, (count / maxByDate) * 90)}px` }}
+                  className="w-full bg-[#2a78d6] rounded-t-md transition-all"
+                  style={{ height: `${count ? Math.max(6, (count / maxByDate) * 100) : 2}%`, backgroundColor: count ? "#2a78d6" : "#e1e0d9" }}
                 />
-                <span className="text-[9px] text-gray-400 rotate-0">{date.slice(0, 5)}</span>
+                <span className="text-[10px] text-gray-500 whitespace-nowrap">{date.slice(0, 5)}</span>
               </div>
             ))}
             {byDate.length === 0 && <p className="text-xs text-gray-400">No data in current filter</p>}
+          </div>
+        </section>
+
+        {/* Breakdowns */}
+        <section className="grid md:grid-cols-2 gap-4">
+          <div className="bg-white rounded-2xl shadow p-4">
+            <h2 className="text-sm font-bold text-[#0B1F5C] mb-3">Call Outcome Breakdown</h2>
+            <DonutChart data={outcomeData} />
+          </div>
+          <div className="bg-white rounded-2xl shadow p-4">
+            <h2 className="text-sm font-bold text-[#0B1F5C] mb-3">Lead Source Breakdown</h2>
+            <DonutChart data={sourceData} />
           </div>
         </section>
 
@@ -447,4 +489,59 @@ function Badge({ remark }: { remark: string }) {
     pending: "bg-gray-100 text-gray-400",
   };
   return <span className={`px-2 py-0.5 rounded-full text-[10px] font-semibold ${colorMap[s]}`}>{remark}</span>;
+}
+
+function DonutChart({ data }: { data: { label: string; value: number; color: string }[] }) {
+  const total = data.reduce((s, d) => s + d.value, 0);
+  if (total === 0) return <p className="text-xs text-gray-400 py-8 text-center">No data in current filter</p>;
+
+  const radius = 60;
+  const strokeWidth = 26;
+  const circumference = 2 * Math.PI * radius;
+  const gap = 2; // degrees of surface gap between segments
+  let cumulative = 0;
+
+  return (
+    <div className="flex items-center gap-6 flex-wrap justify-center">
+      <svg width="160" height="160" viewBox="0 0 160 160" className="flex-shrink-0 -rotate-90">
+        <circle cx="80" cy="80" r={radius} fill="none" stroke="#e1e0d9" strokeWidth={strokeWidth} />
+        {data.map((d) => {
+          const fraction = d.value / total;
+          const segmentLen = Math.max(0, fraction * circumference - gap);
+          const offset = -((cumulative / total) * circumference);
+          cumulative += d.value;
+          return (
+            <circle
+              key={d.label}
+              cx="80"
+              cy="80"
+              r={radius}
+              fill="none"
+              stroke={d.color}
+              strokeWidth={strokeWidth}
+              strokeDasharray={`${segmentLen} ${circumference - segmentLen}`}
+              strokeDashoffset={offset}
+              strokeLinecap="butt"
+            >
+              <title>{`${d.label}: ${d.value} (${Math.round(fraction * 100)}%)`}</title>
+            </circle>
+          );
+        })}
+        <circle cx="80" cy="80" r={radius - strokeWidth / 2 - 4} fill="white" />
+        <text x="80" y="80" textAnchor="middle" dominantBaseline="middle" fontSize="20" fontWeight="700" fill="#0B1F5C" transform="rotate(90 80 80)">
+          {total}
+        </text>
+      </svg>
+      <ul className="space-y-1.5 text-xs">
+        {data.map((d) => (
+          <li key={d.label} className="flex items-center gap-2">
+            <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: d.color }} />
+            <span className="text-gray-600">{d.label}</span>
+            <span className="font-semibold text-[#0B1F5C]">{d.value}</span>
+            <span className="text-gray-400">({Math.round((d.value / total) * 100)}%)</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
