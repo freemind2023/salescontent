@@ -11,7 +11,8 @@ export async function GET(req: NextRequest) {
   try {
     const records = await fetchCallRecords();
     return NextResponse.json({ records, fetchedAt: new Date().toISOString() });
-  } catch (e: any) {
-    return NextResponse.json({ error: e.message || "failed to fetch sheet" }, { status: 500 });
+  } catch (e) {
+    const message = e instanceof Error ? e.message : "failed to fetch sheet";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

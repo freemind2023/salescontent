@@ -23,7 +23,6 @@ type CallRecord = {
 };
 
 const CONNECTED = ["Intrested", "Not Intrested", "Follow Up", "Call Back"];
-const NOT_CONNECTED = ["Switched off", "Switched Off", "Call Busy", "No Response", "Ringing", "Call Cut"];
 const INVALID = ["Invalid Number", "Invalid Number ", "Invalid No", "Wrong No"];
 
 function statusOf(remark: string): "connected" | "not_connected" | "invalid" | "pending" {
@@ -72,8 +71,8 @@ export default function CallingReportPage() {
       setRecords(data.records);
       setFetchedAt(data.fetchedAt);
       setAuthed(true);
-    } catch (e: any) {
-      setError(e.message || "Something went wrong");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Something went wrong");
     } finally {
       setLoading(false);
       setCheckingAuth(false);
