@@ -38,6 +38,11 @@ function parseDMY(d: string): number {
   return new Date(yyyy, mm - 1, dd).getTime();
 }
 
+function parseISO(d: string): number {
+  const [yyyy, mm, dd] = d.split("-").map(Number);
+  return new Date(yyyy, mm - 1, dd).getTime();
+}
+
 export default function CallingReportPage() {
   const [authed, setAuthed] = useState(false);
   const [checkingAuth, setCheckingAuth] = useState(true);
@@ -118,8 +123,8 @@ export default function CallingReportPage() {
       if (statusFilter !== "All" && statusOf(r.remarkL1) !== statusFilter) return false;
       if (fromDate || toDate) {
         const t = parseDMY(r.dateL1);
-        if (fromDate && t < new Date(fromDate).getTime()) return false;
-        if (toDate && t > new Date(toDate).getTime() + 86400000) return false;
+        if (fromDate && t < parseISO(fromDate)) return false;
+        if (toDate && t > parseISO(toDate) + 86400000 - 1) return false;
       }
       return true;
     });
