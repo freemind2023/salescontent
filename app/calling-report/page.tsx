@@ -200,6 +200,24 @@ export default function CallingReportPage() {
     return defs.filter((d) => counts[d.key] > 0).map((d) => ({ label: d.label, value: counts[d.key], color: d.color }));
   }, [filtered]);
 
+  const dataDateRange = useMemo(() => {
+    const times = records.map((r) => parseDMY(r.dateL1)).filter((t) => t > 0);
+    if (!times.length) return null;
+    const fmt = (t: number) => new Date(t).toLocaleDateString("en-GB");
+    return { min: fmt(Math.min(...times)), max: fmt(Math.max(...times)) };
+  }, [records]);
+
+  const hasActiveFilters = Boolean(search || counselorFilter !== "All" || sourceFilter !== "All" || statusFilter !== "All" || fromDate || toDate);
+
+  function clearFilters() {
+    setSearch("");
+    setCounselorFilter("All");
+    setSourceFilter("All");
+    setStatusFilter("All");
+    setFromDate("");
+    setToDate("");
+  }
+
   const sourceData = useMemo(() => {
     const palette = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#6250d6"];
     const counts = new Map<string, number>();
@@ -370,7 +388,24 @@ export default function CallingReportPage() {
 
         {/* Filters */}
         <section className="bg-white rounded-2xl shadow p-4">
-          <h2 className="text-sm font-bold text-[#0B1F5C] mb-3">Call Records</h2>
+          <div className="flex items-center justify-between mb-1 flex-wrap gap-2">
+            <h2 className="text-sm font-bold text-[#0B1F5C]">Call Records</h2>
+            {dataDateRange && (
+              <span className="text-[11px] text-gray-400">
+                Call data available: {dataDateRange.min} – {dataDateRange.max}
+              </span>
+            )}
+          </div>
+          <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+            <p className="text-xs font-semibold text-[#0B1F5C] bg-blue-50 px-2.5 py-1 rounded-lg">
+              Showing {filtered.length} of {records.length} records
+            </p>
+            {hasActiveFilters && (
+              <button onClick={clearFilters} className="text-xs font-semibold text-red-500 hover:text-red-600">
+                Clear all filters
+              </button>
+            )}
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-6 gap-2 mb-4">
             <div className="relative col-span-2">
               <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" />
